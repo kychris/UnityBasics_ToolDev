@@ -19,6 +19,9 @@ public class ExplosiveBarrelManager : MonoBehaviour
 
         foreach (ExplosiveBarrel barrel in allTheBarrels)
         {
+            if (barrel.type == null)
+                return;
+
             Vector3 managerPos = transform.position;
             Vector3 barrelPos = barrel.transform.position;
             float halfHeight = (managerPos.y - barrelPos.y) * 0.5f;
@@ -29,7 +32,7 @@ public class ExplosiveBarrelManager : MonoBehaviour
                 barrelPos,
                 managerPos - tangenOffset,
                 barrelPos + tangenOffset,
-                barrel.color,
+                barrel.type.color,
                 EditorGUIUtility.whiteTexture,
                 1f
             );

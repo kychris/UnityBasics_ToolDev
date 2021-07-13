@@ -9,12 +9,7 @@ public class ExplosiveBarrel : MonoBehaviour
 {
     static readonly int shPropColor = Shader.PropertyToID("_Color");
 
-    [Range(1f, 8f)]
-    public float radius = 1f;
-
-    public float damage = 10;
-
-    public Color color = Color.red;
+    public BarrelType type;
 
     // Initialize mpb, can't do direct initialization so this instead
     MaterialPropertyBlock mpb;
@@ -28,10 +23,13 @@ public class ExplosiveBarrel : MonoBehaviour
         }
     }
 
-    void OnDrawGizmosSelected()
+    void OnDrawGizmos()
     {
-        Handles.color = color;
-        Handles.DrawWireDisc(transform.position, transform.up, radius);
+        if (type == null)
+            return;
+
+        Handles.color = type.color;
+        Handles.DrawWireDisc(transform.position, transform.up, type.radius);
         Handles.color = Color.white;
         // Gizmos.DrawWireSphere(transform.position, radius);
     }
@@ -39,20 +37,22 @@ public class ExplosiveBarrel : MonoBehaviour
     // Called on property change
     void OnValidate()
     {
-        ApplyColor();
+        TryApplyColor();
     }
 
     void OnEnable()
     {
-        ApplyColor();
+        TryApplyColor();
         ExplosiveBarrelManager.allTheBarrels.Add(this);
     }
     void OnDisable() => ExplosiveBarrelManager.allTheBarrels.Remove(this);
 
-    void ApplyColor()
+    void TryApplyColor()
     {
+        if (type == null)
+            return;
         MeshRenderer rnd = GetComponent<MeshRenderer>();
-        Mpb.SetColor(shPropColor, color);
+        Mpb.SetColor(shPropColor, type.color);
         rnd.SetPropertyBlock(Mpb);
     }
 }

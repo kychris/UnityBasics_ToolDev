@@ -19,14 +19,30 @@ public class BarrelTypeEditor : Editor
     Things things;
     float someValue;
 
+    Transform tf;
+
 
     public override void OnInspectorGUI()
     {
-        GUILayout.Label("test");
-        if (GUILayout.Button("Do a thing"))
-            Debug.Log("did a thing");
+        using (new GUILayout.VerticalScope(EditorStyles.helpBox))
+        {
+            using (new GUILayout.HorizontalScope())
+            {
+                // GUILayout.BeginHorizontal();
+                GUILayout.Label("Title", new GUILayoutOption[] { GUILayout.Width(50) });
+                if (GUILayout.Button("Do a thing"))
+                    Debug.Log("did a thing");
+                things = (Things)EditorGUILayout.EnumPopup(things);
+                // GUILayout.EndHorizontal();
+            }
 
-        things = (Things)EditorGUILayout.EnumPopup(things);
+            GUILayout.Label("things", EditorStyles.toolbarButton);
+            GUILayout.Label("things", GUI.skin.button);
+        }
+        GUILayout.Space(40);
+        GUILayout.Label("Things", EditorStyles.boldLabel);
+
+        EditorGUILayout.ObjectField("Assign here: ", null, typeof(Transform), true);
 
 
         // explicit positioning using rect

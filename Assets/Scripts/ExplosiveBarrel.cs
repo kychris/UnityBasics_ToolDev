@@ -28,6 +28,7 @@ public class ExplosiveBarrel : MonoBehaviour
         if (type == null)
             return;
 
+        Handles.zTest = CompareFunction.LessEqual;
         Handles.color = type.color;
         Handles.DrawWireDisc(transform.position, transform.up, type.radius);
         Handles.color = Color.white;

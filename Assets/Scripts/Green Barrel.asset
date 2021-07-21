@@ -14,4 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 3
   damage: -20
-  color: {r: 0.032707386, g: 0.990566, b: 0.9721835, a: 1}
+  color: {r: 0.03137256, g: 0.99215686, b: 0.147384, a: 1}
+  test: []
+  test2:
+    pos: {x: 0, y: 0, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
+    rot: {x: 0, y: 0, z: 0, w: 0}

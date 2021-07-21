@@ -48,7 +48,7 @@ public class ExplosiveBarrel : MonoBehaviour
     }
     void OnDisable() => ExplosiveBarrelManager.allTheBarrels.Remove(this);
 
-    void TryApplyColor()
+    public void TryApplyColor()
     {
         if (type == null)
             return;

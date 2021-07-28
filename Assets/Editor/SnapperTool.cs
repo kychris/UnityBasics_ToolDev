@@ -33,7 +33,7 @@ public class SnapperTool : EditorWindow
         foreach (var go in Selection.gameObjects)
         {
             Undo.RecordObject(go.transform, "snap objects");
-            go.transform.position = go.transform.position.Round();
+            go.transform.position = go.transform.position.Round(1);
         }
     }
 
